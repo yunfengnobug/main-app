@@ -4,36 +4,33 @@
 
 // 子应用微前端配置
 // 子应用之间：name 不能重复，routePrefix 不能重复(推荐 /+name)，url如果和主应用存在跨域，请在子应用中添加允许跨域，以便于开发，vite 项目可忽略
+// 注意：只有在此数组中的应用才会被启用，如需禁用某个应用，请将其注释掉
 export const childApps = [
   {
     name: 'child-one',
     url: 'http://localhost:8001',
     iframe: true,
     routePrefix: '/child-one',
-    port: 8001,
-    enabled: true,
     keepAlive: true,
+    'router-mode': 'state',
   },
   {
     name: 'child-two',
     url: 'http://localhost:8002',
     iframe: true,
     routePrefix: '/child-two',
-    port: 8002,
-    enabled: true,
     keepAlive: true,
     'router-mode': 'state',
   },
-  // 添加新的子应用示例（已禁用）
-  {
-    name: 'child-three',
-    url: 'http://192.168.129.20:8849',
-    iframe: true, // vite 项目必须设置为 true
-    routePrefix: '/child-three',
-    port: 8003,
-    enabled: true, // 默认禁用，需要时启用
-    'router-mode': 'state',
-  },
+  // 子应用示例
+  // {
+  //   name: 'child-three',
+  //   url: 'http://localhost:8003',
+  //   iframe: true, // vite 项目必须设置为 true
+  //   routePrefix: '/child-three',
+  //   keepAlive: true,
+  //   'router-mode': 'state',
+  // },
 ]
 
 // 统一菜单配置（简化版本：移除key字段，自动推导childPath）
@@ -51,7 +48,6 @@ export const menuConfig = [
     icon: 'InfoCircleOutlined',
     type: 'main', // 主应用页面
   },
-
   // 子应用1相关菜单
   {
     label: '子应用1',
@@ -105,14 +101,6 @@ export const menuConfig = [
         appName: 'child-two',
         // childPath 将自动推导为 /about
       },
-      {
-        label: '系统监控',
-        path: '/child-two/monitor',
-        icon: 'MonitorOutlined',
-        type: 'micro', // 子应用页面
-        appName: 'child-two',
-        // childPath 将自动推导为 /monitor
-      },
       // 多级菜单示例
       {
         label: '管理功能',
@@ -149,15 +137,6 @@ export const menuConfig = [
         path: '/system/settings',
         icon: 'SettingOutlined',
         type: 'main', // 主应用页面
-      },
-
-      {
-        label: '首页admin',
-        path: '/child-three/home/index',
-        icon: 'ProfileOutlined',
-        type: 'micro', // 主应用页面
-        appName: 'child-three',
-        // childPath 将自动推导为 /home/index
       },
 
       // 三级菜单示例

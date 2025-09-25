@@ -30,8 +30,6 @@ src/config/
   url: 'http://localhost:8001',  // 子应用基础URL，如果和主应用存在跨域，请在子应用中添加允许跨域，以便于开发，vite 项目可忽略
   iframe: true,                // 是否使用iframe模式，vite 应用必须设置为 true
   routePrefix: '/child-one',   // 路由前缀，子应用之间名称不能重复，推荐 /+name
-  port: 8001,                  // 端口号，开发时项目启动的端口号
-  enabled: true,               // 是否启用
   keepAlive: true,             // 是否启用keep-alive缓存，提高性能
 
   // micro-app 组件的额外属性（会自动传递给 micro-app 组件）
@@ -45,7 +43,7 @@ src/config/
 
 **动态属性绑定**：
 
-- 除了 `enabled`、`port`、`routePrefix`、`url` 等配置管理相关的字段外，其他所有字段都会自动传递给 `micro-app` 组件
+- 除了 `routePrefix`、`url` 等配置管理相关的字段外，其他所有字段都会自动传递给 `micro-app` 组件
 - 使用扩展运算符 `...microAppAttributes` 实现动态绑定
 - `name` 和 `url` 会被自动计算，无需在配置中指定
 - 新增任何 micro-app 支持的属性都会自动生效，无需修改模板代码
@@ -148,8 +146,7 @@ src/config/
   url: 'http://localhost:8004',
   iframe: true, // vite 项目必须设置为 true
   routePrefix: '/new-app', // 菜单项的路由前缀，子应用之间名称不能重复，推荐 /+name
-  port: 8004,
-  enabled: true,
+  keepAlive: true,
 }
 ```
 
@@ -200,7 +197,7 @@ src/config/
 
 ### 3. 临时禁用子应用
 
-将配置中的 `enabled` 设置为 `false`。
+在 `childApps` 数组中将对应的配置项注释掉即可。
 
 ### 4. 修改菜单
 

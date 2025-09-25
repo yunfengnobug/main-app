@@ -64,7 +64,7 @@ const microAppProps = computed(() => {
   if (!childAppConfig) return {}
 
   // 使用扩展运算符合并所有配置，同时过滤掉不需要的属性
-  const { enabled, port, routePrefix, ...microAppAttributes } = childAppConfig
+  const { routePrefix, ...microAppAttributes } = childAppConfig
 
   const props = {
     ...microAppAttributes,

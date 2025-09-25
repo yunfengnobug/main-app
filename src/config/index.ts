@@ -5,24 +5,24 @@ import { childApps, menuConfig } from './app.config'
  */
 class MicroAppConfigManager {
   /**
-   * 获取所有启用的子应用配置
+   * 获取所有子应用配置
    */
   getChildApps() {
-    return childApps.filter((app: any) => app.enabled)
+    return childApps
   }
 
   /**
    * 根据名称获取子应用配置
    */
   getChildAppByName(name: string) {
-    return childApps.find((app: any) => app.name === name && app.enabled)
+    return childApps.find((app: any) => app.name === name)
   }
 
   /**
    * 根据路由路径获取子应用配置
    */
   getChildAppByRoute(path: string) {
-    return childApps.find((app: any) => app.enabled && path.startsWith(app.routePrefix))
+    return childApps.find((app: any) => path.startsWith(app.routePrefix))
   }
 
   /**
