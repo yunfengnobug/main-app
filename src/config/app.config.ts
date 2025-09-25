@@ -22,16 +22,17 @@ export const childApps = [
     port: 8002,
     enabled: true,
     keepAlive: true,
-    'router-mode': 'native',
+    'router-mode': 'state',
   },
   // 添加新的子应用示例（已禁用）
   {
     name: 'child-three',
-    url: 'http://localhost:8003',
-    iframe: false, // vite 项目必须设置为 true
+    url: 'http://192.168.129.20:8849',
+    iframe: true, // vite 项目必须设置为 true
     routePrefix: '/child-three',
     port: 8003,
-    enabled: false, // 默认禁用，需要时启用
+    enabled: true, // 默认禁用，需要时启用
+    'router-mode': 'state',
   },
 ]
 
@@ -148,6 +149,15 @@ export const menuConfig = [
         path: '/system/settings',
         icon: 'SettingOutlined',
         type: 'main', // 主应用页面
+      },
+
+      {
+        label: '首页admin',
+        path: '/child-three/home/index',
+        icon: 'ProfileOutlined',
+        type: 'micro', // 主应用页面
+        appName: 'child-three',
+        // childPath 将自动推导为 /home/index
       },
 
       // 三级菜单示例

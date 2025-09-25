@@ -44,6 +44,11 @@ const router = createRouter({
       name: 'child-two',
       component: () => import('../views/layout.vue'),
     },
+    {
+      path: '/child-three/:path*',
+      name: 'child-three',
+      component: () => import('../views/layout.vue'),
+    },
   ],
 })
 
