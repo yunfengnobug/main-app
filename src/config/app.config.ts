@@ -22,6 +22,7 @@ export const childApps = [
     port: 8002,
     enabled: true,
     keepAlive: true,
+    'router-mode': 'native',
   },
   // 添加新的子应用示例（已禁用）
   {
