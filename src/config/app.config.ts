@@ -90,7 +90,7 @@ export const menuConfig = [
     children: [
       {
         label: '首页',
-        path: '/child-two/',
+        path: '/child-two/home',
         icon: 'HomeOutlined',
         type: 'micro', // 子应用页面
         appName: 'child-two',
