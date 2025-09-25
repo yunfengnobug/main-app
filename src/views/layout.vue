@@ -94,7 +94,6 @@ const handleMenuClick = ({ key }: { key: string }) => {
 
   const menuItem = findMenuItemByKey(menuData.value, key)
   if (menuItem?.path) {
-    console.log(menuItem.path)
     router.push(menuItem.path)
   }
 }

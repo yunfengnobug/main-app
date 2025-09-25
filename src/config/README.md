@@ -152,40 +152,42 @@ src/config/
 }
 ```
 
-**2) 在 `childAppRoutes` 对象中添加路由配置：**
+**2) 在 `menuConfig` 数组中添加菜单配置：**
 
 ```javascript
-// 在 childAppRoutes 对象中添加新的子应用路由配置
-'new-app': {
-  appName: 'new-app',
-  title: '新应用',
+// 在 menuConfig 数组中添加新的子应用菜单配置
+{
+  label: '新应用',
   icon: 'AppstoreOutlined',
   children: [
     {
-      key: 'new-app-home',
       label: '首页',
       path: '/new-app/home',
-      childPath: '/',
       icon: 'HomeOutlined',
+      type: 'micro',
+      appName: 'new-app',
+      // targetRoute 将自动推导为 /home
     },
     {
-      key: 'new-app-about',
       label: '关于',
       path: '/new-app/about',
-      childPath: '/about',
       icon: 'InfoCircleOutlined',
+      type: 'micro',
+      appName: 'new-app',
+      // targetRoute 将自动推导为 /about
     },
     // 支持二级菜单
     {
-      key: 'new-app-admin',
       label: '管理功能',
+      icon: 'SettingOutlined',
       children: [
         {
-          key: 'new-app-admin-user',
           label: '用户管理',
           path: '/new-app/admin/user',
-          childPath: '/admin/user',
           icon: 'UserOutlined',
+          type: 'micro',
+          appName: 'new-app',
+          // targetRoute 将自动推导为 /admin/user
         }
       ]
     }
@@ -210,7 +212,7 @@ src/config/
 
 ### 5. 修改菜单
 
-在 `mainAppRoutes` 或 `childAppRoutes` 数组中添加、修改或删除菜单项。
+在 `menuConfig` 数组中添加、修改或删除菜单项。
 
 ## 配置管理器 API
 
@@ -227,16 +229,10 @@ microAppConfig.getChildAppByRoute('/child-one/home')
 // 获取需要预加载的子应用配置
 microAppConfig.getPreloadApps()
 
-// 获取主应用路由菜单
-microAppConfig.getMainAppRoutes()
+// 获取完整的菜单配置
+microAppConfig.getMenuConfig()
 
-// 获取启用的子应用路由菜单
-microAppConfig.getChildAppRoutes()
-
-// 根据子应用名称获取其路由配置
-microAppConfig.getRoutesByAppName('child-one')
-
-// 获取所有菜单项（主应用 + 子应用）
+// 获取所有菜单项（递归处理多级菜单）
 microAppConfig.getAllMenuItems()
 
 // 获取子应用URL
