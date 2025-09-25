@@ -12,6 +12,7 @@ export const childApps = [
     iframe: true,
     routePrefix: '/child-one',
     keepAlive: true,
+    preload: true, // 是否预加载此应用
     'router-mode': 'state',
   },
   {
@@ -20,6 +21,7 @@ export const childApps = [
     iframe: true,
     routePrefix: '/child-two',
     keepAlive: true,
+    preload: true, // 是否预加载此应用
     'router-mode': 'state',
   },
   // 子应用示例
@@ -29,6 +31,7 @@ export const childApps = [
   //   iframe: true, // vite 项目必须设置为 true
   //   routePrefix: '/child-three',
   //   keepAlive: true,
+  //   preload: false, // 不预加载此应用
   //   'router-mode': 'state',
   // },
 ]

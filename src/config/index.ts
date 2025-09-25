@@ -26,6 +26,13 @@ class MicroAppConfigManager {
   }
 
   /**
+   * 获取需要预加载的子应用配置
+   */
+  getPreloadApps() {
+    return childApps.filter((app: any) => app.preload === true)
+  }
+
+  /**
    * 获取完整的菜单配置
    */
   getMenuConfig() {

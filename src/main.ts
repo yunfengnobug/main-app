@@ -5,11 +5,11 @@ import microApp from '@micro-zoe/micro-app'
 import App from './App.vue'
 import 'ant-design-vue/dist/reset.css'
 import router from './router'
-import { childApps } from './config/app.config'
+import { microAppConfig } from './config'
 
 // 启动micro-app
 microApp.start({
-  preFetchApps: childApps,
+  preFetchApps: microAppConfig.getPreloadApps(),
 })
 
 microApp.setData('child-one', {

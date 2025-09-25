@@ -31,6 +31,7 @@ src/config/
   iframe: true,                // 是否使用iframe模式，vite 应用必须设置为 true
   routePrefix: '/child-one',   // 路由前缀，子应用之间名称不能重复，推荐 /+name
   keepAlive: true,             // 是否启用keep-alive缓存，提高性能
+  preload: true,               // 是否预加载此应用，设置为 true 会在应用启动时预加载
 
   // micro-app 组件的额外属性（会自动传递给 micro-app 组件）
   'disable-memory-router': false, // 是否禁用虚拟路由系统
@@ -43,7 +44,7 @@ src/config/
 
 **动态属性绑定**：
 
-- 除了 `routePrefix`、`url` 等配置管理相关的字段外，其他所有字段都会自动传递给 `micro-app` 组件
+- 除了 `routePrefix`、`url`、`preload` 等配置管理相关的字段外，其他所有字段都会自动传递给 `micro-app` 组件
 - 使用扩展运算符 `...microAppAttributes` 实现动态绑定
 - `name` 和 `url` 会被自动计算，无需在配置中指定
 - 新增任何 micro-app 支持的属性都会自动生效，无需修改模板代码
@@ -147,6 +148,7 @@ src/config/
   iframe: true, // vite 项目必须设置为 true
   routePrefix: '/new-app', // 菜单项的路由前缀，子应用之间名称不能重复，推荐 /+name
   keepAlive: true,
+  preload: true, // 是否预加载此应用
 }
 ```
 
@@ -195,11 +197,18 @@ src/config/
 
 直接编辑 `app.config.ts` 文件中对应的配置项。
 
-### 3. 临时禁用子应用
+### 3. 配置预加载
+
+在子应用配置中设置 `preload` 字段：
+
+- `preload: true` - 预加载此应用
+- `preload: false` - 不预加载此应用
+
+### 4. 临时禁用子应用
 
 在 `childApps` 数组中将对应的配置项注释掉即可。
 
-### 4. 修改菜单
+### 5. 修改菜单
 
 在 `mainAppRoutes` 或 `childAppRoutes` 数组中添加、修改或删除菜单项。
 
@@ -214,6 +223,9 @@ microAppConfig.getChildAppByName('child-one')
 
 // 根据路由获取子应用配置
 microAppConfig.getChildAppByRoute('/child-one/home')
+
+// 获取需要预加载的子应用配置
+microAppConfig.getPreloadApps()
 
 // 获取主应用路由菜单
 microAppConfig.getMainAppRoutes()
